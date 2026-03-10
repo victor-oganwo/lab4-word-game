@@ -1,50 +1,81 @@
 # My Original Thinking
 
-## Game States
-Possible states of a word guessing game (like Hangman):
+## App States
+- Start the game
+- Playing it
+- Win
+- Lose
 
-- Start state (game begins)
-- Playing state (user is guessing letters)
-- Correct guess state
-- Incorrect guess state
-- Win state (player guesses the whole word)
-- Lose state (player runs out of attempts)
+## App Variables
+- secret word
+- guessed letters
+- remaining tries
+- it shows the current word display
+- the user inputs
 
-## Variables Required
-
-- secret_word → the word the player must guess
-- guessed_letters → letters the player already tried
-- remaining_attempts → number of guesses left
-- current_display → word with hidden letters (example: _ _ a _ _)
-- game_over → boolean to know if the game ended
-- player_guess → the letter the player enters
-
-## Rules and Invariants
-
+## App Rules and Invariants
 - Player guesses one letter at a time
-- If the letter is in the word → reveal it
-- If not → decrease remaining attempts
-- Player wins if all letters are revealed
-- Player loses if attempts reach zero
-- Letters already guessed cannot be used again
+- Correct letter is revealed
+- Wrong letter reduces tries
+- Same guess should not count twice
+- Game ends when word is guessed or tries reach 0
 
-## Possible Bugs / Edge Cases
-
-- Player enters more than one letter
-- Player enters numbers or symbols
-- Player repeats the same guess
-- Word contains repeated letters
-- Case sensitivity (A vs a)
-- Empty input from player
-
+## App Bugs
+- Empty input
+- More than one letter entered
+- Number or symbol entered
+- Repeated guess
+- Uppercase/lowercase issue
 # Copilot Suggestions
 
 ## App States
-(start, playing, win, lose)
+- Initialization / Start
+- Playing / Waiting for input
+- Correct guess
+- Incorrect guess
+- Win
+- Lose
+- Game over
 
 ## App Variables
-secret_word
-guessed_letters
-remaining_attempts
-current_display
-player_guess
+- word_to_guess
+- guessed_word / current display
+- remaining_attempts
+- max_attempts
+- guessed_letters
+- current_guess
+- correct_guesses
+- incorrect_guesses
+- game_won
+- game_lost
+
+## App Rules and Invariants
+- The word should be chosen at the start and hidden from the player
+- The player guesses one letter at a time
+- Guesses should be case-insensitive
+- Only alphabetic input should be accepted
+- Repeated guesses should not reduce attempts
+- Correct guesses should reveal all matching positions in the word
+- Incorrect guesses should reduce remaining attempts
+- The game ends when the word is guessed or attempts reach zero
+- guessed_word should always match the revealed letters so far
+- remaining_attempts should never go below 0
+- guessed_letters should not contain duplicates
+- game_won and game_lost cannot both be true
+
+## App Bugs
+- Case sensitivity issues
+- Repeated guesses counting more than once
+- Invalid input like numbers or symbols
+- Empty input
+- guessed_word not updating correctly
+- Repeated letters not all being revealed
+- remaining_attempts going below 0
+- Game continuing after win or loss
+- Empty or invalid word list
+
+## Observations
+For states and variables, Copilot was helpful but slightly overcomplicated because it included optional ideas like pause, score, hints, and difficulty.
+For rules and bugs, the extra detail was useful because it highlighted important edge cases and invariants that are easy to forget.
+Overall, Copilot helped expand the design, but I still needed to select only the parts that fit a simple Hangman-style game.
+ The game should handle an empty or invalid word list safely
