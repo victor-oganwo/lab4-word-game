@@ -60,3 +60,43 @@ def test_immutability_original_list_not_mutated():
 	updated, lives = update_game_state(secret, original, "n", 6)
 	assert original == original_copy  # original list unchanged
 	assert "n" in updated
+
+import random
+from main import update_game_state, build_masked_word, is_win
+
+def test_update_game_state_correct_guess():
+    word = "apple"
+    guesses = ["a"]
+    updated, lives = update_game_state(word, guesses, "p", 5)
+    assert "p" in updated
+    assert lives == 5
+
+def test_update_game_state_incorrect_guess():
+    word = "apple"
+    guesses = []
+    updated, lives = update_game_state(word, guesses, "z", 3)
+    assert "z" in updated
+    assert lives == 2
+
+def test_update_game_state_invalid_input():
+    word = "apple"
+    guesses = ["a"]
+    updated, lives = update_game_state(word, guesses, "", 5)
+    assert updated == guesses
+    assert lives == 5
+
+def test_build_masked_word():
+    word = "apple"
+    guesses = ["a", "p"]
+    masked = build_masked_word(word, guesses)
+    assert masked == "a p p _ _"
+
+def test_is_win_true():
+    word = "apple"
+    guesses = ["a", "p", "l", "e"]
+    assert is_win(word, guesses)
+
+def test_is_win_false():
+    word = "apple"
+    guesses = ["a", "p"]
+    assert not is_win(word, guesses)

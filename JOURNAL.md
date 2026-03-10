@@ -3,6 +3,17 @@
 **New Interaction**
 **Date**: 03-10-2026 [Time Unknown]
 **User**: victor.oganwo@epita.fr
+**Prompt**: Add minimal difficulty levels (easy, medium, hard) to Hangman game
+**CoPilot Mode**: Agent
+**CoPilot Model**: Grok Code Fast 1
+**Changes Made**: Updated `main()` to prompt for difficulty and set lives accordingly (easy: 8, medium: 6, hard: 4).
+**Reasons for Changes**: Provide a simple extension for the lab, keeping structure minimal and logic/UI separate.
+**Context**: User requested a minimal, optional extension for difficulty levels.
+**My Observations**: Difficulty is handled with a dictionary and prompt; defaults to medium if input is invalid. No changes needed elsewhere.
+
+**New Interaction**
+**Date**: 03-10-2026 [Time Unknown]
+**User**: victor.oganwo@epita.fr
 **Prompt**: Suggest and implement minimal helper for win detection
 **CoPilot Mode**: Agent
 **CoPilot Model**: Grok Code Fast 1
